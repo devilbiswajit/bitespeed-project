@@ -61,7 +61,7 @@ export const identify = async (req, res) => {
     console.log("Received request at /identify:", req.body);
     res.status(200).json({
       contact: {
-        primaryContatctId: primaryContact.id,
+        primaryContactId: primaryContact.id,
         emails,
         phoneNumbers: phones,
         secondaryContactIds: secondaryIds
@@ -70,6 +70,7 @@ export const identify = async (req, res) => {
   } catch (error) {
     console.error("Error:", error);
     res.status(500).json({ error: "Internal Server Error" });
+    console.log("Error Stack:", error.stack);
   } finally {
     connection.release();
   }
